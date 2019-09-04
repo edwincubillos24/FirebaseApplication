@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_create">
+
+    <fragment
+        android:id="@+id/navigation_create"
+        android:name="com.edwinacubillos.firebaseapplication.CreateFragment"
+        android:label="@string/title_create"
+        tools:layout="@layout/fragment_create" />
+
+    <fragment
+        android:id="@+id/navigation_read"
+        android:name="com.edwinacubillos.firebaseapplication.ReadFragment"
+        android:label="@string/title_read"
+        tools:layout="@layout/fragment_read" />
+
+    <fragment
+        android:id="@+id/navigation_update"
+        android:name="com.edwinacubillos.firebaseapplication.UpdateFragment"
+        android:label="@string/title_update"
+        tools:layout="@layout/fragment_update" />
+
+    <fragment
+        android:id="@+id/navigation_delete"
+        android:name="com.edwinacubillos.firebaseapplication.DeleteFragment"
+        android:label="@string/title_delete"
+        tools:layout="@layout/fragment_delete" />
+</navigation>
