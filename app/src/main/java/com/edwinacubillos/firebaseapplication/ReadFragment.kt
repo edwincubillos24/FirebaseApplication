@@ -5,13 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.edwinacubillos.firebaseapplication.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -20,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_read.view.*
 
 class ReadFragment : Fragment() {
 
-    private var userList : ArrayList<User> = ArrayList()
+    private var userList: ArrayList<User> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,16 +33,18 @@ class ReadFragment : Fragment() {
         root.recyclerView.layoutManager = LinearLayoutManager(
             activity!!.applicationContext,
             RecyclerView.VERTICAL,
-            false)
+            false
+        )
         val userAdapter = RecyclerUserAdapter(
             userList,
-            activity!!.applicationContext)
+            activity!!.applicationContext
+        )
 
         root.recyclerView.adapter = userAdapter
 
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (snapshot : DataSnapshot in dataSnapshot.children){
+                for (snapshot: DataSnapshot in dataSnapshot.children) {
                     val user: User? = snapshot.getValue(User::class.java)
                     userList.add(user!!)
                 }

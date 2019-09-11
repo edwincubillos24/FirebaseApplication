@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.user_item.view.*
 
 class RecyclerUserAdapter : RecyclerView.Adapter<RecyclerUserAdapter.UserViewHolder> {
@@ -36,6 +37,7 @@ class RecyclerUserAdapter : RecyclerView.Adapter<RecyclerUserAdapter.UserViewHol
         fun loadItem(user: User) {
             itemView.tName.text = user.name
             itemView.tId.text = user.id
+            Picasso.get().load(user.urlfoto).into(itemView.iPicture)
         }
     }
 }

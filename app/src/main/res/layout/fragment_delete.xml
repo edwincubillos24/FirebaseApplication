@@ -10,8 +10,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/eName"
-        android:hint="@string/name"/>
+        android:id="@+id/eCedula"
+        android:hint="@string/cedula"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
