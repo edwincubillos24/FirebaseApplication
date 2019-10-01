@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_read.view.*
 
 class ReadFragment : Fragment() {
 
-    private var userList: ArrayList<User> = ArrayList()
+    private lateinit var userList: MutableList<User>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +35,8 @@ class ReadFragment : Fragment() {
             RecyclerView.VERTICAL,
             false
         )
+
+        userList = arrayListOf()
         val userAdapter = RecyclerUserAdapter(
             userList,
             activity!!.applicationContext
@@ -42,7 +44,18 @@ class ReadFragment : Fragment() {
 
         root.recyclerView.adapter = userAdapter
 
-        myRef.addValueEventListener(object : ValueEventListener {
+        Thread {
+
+        var userDao: UserDao = FirebaseApplication.database.UserDao()
+
+        userList = userDao.getAllUsers()
+
+
+        }.start()
+        userAdapter.notifyDataSetChanged()
+
+
+    /*    myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (snapshot: DataSnapshot in dataSnapshot.children) {
                     val user: User? = snapshot.getValue(User::class.java)
@@ -54,7 +67,7 @@ class ReadFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 Log.w("value", "Failed to read value.", error.toException())
             }
-        })
+        })*/
 
 
 

@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.edwinacubillos.firebaseapplication.FirebaseApplication.Companion.database
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.FirebaseDatabase
@@ -37,7 +38,8 @@ class CreateFragment : Fragment() {
         root = inflater.inflate(R.layout.fragment_create, container, false)
 
         root.bSave.setOnClickListener {
-                saveImage()
+                //saveImage()
+            saveUserLocal()
         }
 
         root.iPicture.setOnClickListener {
@@ -46,6 +48,23 @@ class CreateFragment : Fragment() {
 
         return root
     }
+
+    private fun saveUserLocal() {
+        val name = eName.text.toString()
+        val id = eId.text.toString()
+        val email = eMail.text.toString()
+
+        val user = User(
+            name,
+            id,
+            email,
+            ""
+        )
+
+        var userDao: UserDao = FirebaseApplication.database.UserDao()
+        userDao.insertUser(user);
+    }
+
 
     private fun takePhoto() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->

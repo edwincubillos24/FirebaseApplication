@@ -25,6 +25,20 @@ class UpdateFragment : Fragment() {
             var email = root.eMail.text.toString()
             var eid = root.eId.text.toString()
 
+            //ROOM
+
+            val user = User(
+                nombre,
+                eid,
+                email,
+                ""
+            )
+
+            var userDao: UserDao = FirebaseApplication.database.UserDao()
+            userDao.updateUser(user);
+
+
+
             val myRef = database.getReference("usuarios").child(eid)
 
             val childUpdates = HashMap<String, Any>()

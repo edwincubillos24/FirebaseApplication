@@ -10,10 +10,10 @@ import kotlinx.android.synthetic.main.user_item.view.*
 
 class RecyclerUserAdapter : RecyclerView.Adapter<RecyclerUserAdapter.UserViewHolder> {
 
-    private var listUser: ArrayList<User> = ArrayList()
+    private var listUser: MutableList<User>
     private var context: Context? = null
 
-    constructor(listUser: ArrayList<User>, context: Context) {
+    constructor(listUser: MutableList<User>, context: Context) {
         this.listUser = listUser
         this.context = context
     }
